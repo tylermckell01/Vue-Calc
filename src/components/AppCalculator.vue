@@ -55,11 +55,11 @@ export default {
       }
     };
 
-    // const inputDecimal = () => {
-    //   if (!firstNumber.value.includes(".")) {
-    //     firstNumber.value += ".";
-    //   }
-    // };
+    const inputDecimal = () => {
+      if (!firstNumber.value.includes(".")) {
+        firstNumber.value += ".";
+      }
+    };
 
     const selectedOperation = (operation) => {
       currentOperation.value = operation;
@@ -103,7 +103,7 @@ export default {
       currentOperation,
       onDisplay,
       handleInputNumber,
-      // inputDecimal,
+      inputDecimal,
       selectedOperation,
       performOperation,
       reset,
