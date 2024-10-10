@@ -4,31 +4,31 @@
       {{ onDisplay !== "" ? onDisplay : "0" }}
     </div>
     <div class="buttons">
-      <div class="row1">
+      <div class="row 1">
         <button @click="handleInputNumber(7)">7</button>
         <button @click="handleInputNumber(8)">8</button>
         <button @click="handleInputNumber(9)">9</button>
         <button @click="selectedOperation('/')">/</button>
       </div>
-      <div class="row2">
+      <div class="row 2">
         <button @click="handleInputNumber(4)">4</button>
         <button @click="handleInputNumber(5)">5</button>
         <button @click="handleInputNumber(6)">6</button>
         <button @click="selectedOperation('*')">x</button>
       </div>
-      <div class="row3">
+      <div class="row 3">
         <button @click="handleInputNumber(3)">3</button>
         <button @click="handleInputNumber(2)">2</button>
         <button @click="handleInputNumber(1)">1</button>
         <button @click="selectedOperation('-')">-</button>
       </div>
-      <div class="row4">
+      <div class="row 4">
         <button @click="handleInputNumber(0)">0</button>
         <button @click="inputDecimal('.')">.</button>
         <button @click="performOperation()">=</button>
         <button @click="selectedOperation('+')">+</button>
       </div>
-      <div class="reset"><button @click="reset()">reset</button></div>
+      <div class="row reset"><button @click="reset()">reset</button></div>
     </div>
   </div>
 </template>
@@ -123,11 +123,58 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .border {
-  justify-self: center;
-  width: 400px;
-  height: 500px;
-  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 300px;
+  height: 400px;
+  padding: 15px;
+  background-color: rgb(0, 89, 114);
+  border-radius: 10px;
+
+  .screen {
+    // width: 100%;
+    background-color: rgb(173, 203, 95);
+    border-radius: 10px;
+    padding: 10px 110px;
+    font-size: 24px;
+  }
+
+  .buttons {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .row {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      button {
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(104, 104, 104, 0.7);
+          border-radius: 10px;
+        }
+      }
+    }
+
+    .reset {
+      button {
+        width: 100px;
+        height: 35px;
+      }
+    }
+  }
 }
 </style>

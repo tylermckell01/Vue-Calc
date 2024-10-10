@@ -1,14 +1,23 @@
 <template>
+  <CalculatorTitle :title="title" />
   <AppCalculator />
 </template>
 
 <script>
+import CalculatorTitle from "./components/CalculatorTitle.vue";
 import AppCalculator from "./components/AppCalculator.vue";
 
 export default {
   name: "App",
   components: {
     AppCalculator,
+    CalculatorTitle,
+  },
+  props: {
+    title: {
+      type: String,
+      default: "this is your title",
+    },
   },
 };
 </script>
@@ -22,6 +31,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
