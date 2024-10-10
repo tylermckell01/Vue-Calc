@@ -1,7 +1,7 @@
 <template>
   <div class="border">
     <div class="screen">
-      {{ onDisplay !== null ? onDisplay : "0" }}
+      {{ onDisplay !== "" ? onDisplay : "0" }}
     </div>
     <div class="buttons">
       <div class="row1">
@@ -40,10 +40,10 @@ export default {
   name: "CalculatorApp",
 
   setup() {
-    const firstNumber = ref(null);
-    const secondNumber = ref(null);
-    const currentOperation = ref(null);
-    const onDisplay = ref(null);
+    const firstNumber = ref("");
+    const secondNumber = ref("");
+    const currentOperation = ref("");
+    const onDisplay = ref("");
 
     const handleInputNumber = (num) => {
       if (!currentOperation.value) {
@@ -56,15 +56,25 @@ export default {
     };
 
     const inputDecimal = () => {
-      if (!firstNumber.value.includes(".")) {
-        firstNumber.value += ".";
+      if (!currentOperation.value) {
+        if (!firstNumber.value.includes(".")) {
+          firstNumber.value += ".";
+          onDisplay.value = `${firstNumber.value} ${currentOperation.value} ${secondNumber.value}`;
+        }
+      } else if (!secondNumber.value.includes(".")) {
+        secondNumber.value += ".";
+        onDisplay.value = `${firstNumber.value} ${currentOperation.value} ${secondNumber.value}`;
       }
     };
 
     const selectedOperation = (operation) => {
-      currentOperation.value = operation;
+      if (firstNumber.value) {
+        currentOperation.value = operation;
 
-      onDisplay.value = `${onDisplay.value} ${operation}`;
+        onDisplay.value = `${onDisplay.value} ${operation}`;
+      } else {
+        onDisplay.value = "must select number first";
+      }
     };
 
     const performOperation = () => {
@@ -81,20 +91,20 @@ export default {
       } else if (currentOperation.value == "/") {
         result = firstNumber.value = (num1 / num2).toString();
       } else {
-        secondNumber.value == null;
-        currentOperation.value == null;
+        secondNumber.value == "";
+        currentOperation.value == "";
       }
       onDisplay.value = result;
       firstNumber.value = result;
-      secondNumber.value = null;
-      currentOperation.value = null;
+      secondNumber.value = "";
+      currentOperation.value = "";
     };
 
     const reset = () => {
-      onDisplay.value = null;
-      firstNumber.value = null;
-      secondNumber.value = null;
-      currentOperation.value = null;
+      onDisplay.value = "";
+      firstNumber.value = "";
+      secondNumber.value = "";
+      currentOperation.value = "";
     };
 
     return {
