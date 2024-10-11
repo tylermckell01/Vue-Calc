@@ -77,6 +77,7 @@ export default {
         if (currentOperation.value == "sqr") {
           performOperation();
         }
+        onDisplay.value = `${firstNumber.value} ${currentOperation.value}`;
       } else {
         onDisplay.value = "must select number first";
       }
@@ -85,21 +86,26 @@ export default {
     const performOperation = () => {
       const num1 = parseFloat(firstNumber.value);
       const num2 = parseFloat(secondNumber.value);
-      let result = 0;
+      let result = "";
 
-      if (currentOperation.value == "+") {
-        result = firstNumber.value = (num1 + num2).toString();
-      } else if (currentOperation.value == "-") {
-        result = firstNumber.value = (num1 - num2).toString();
-      } else if (currentOperation.value == "*") {
-        result = firstNumber.value = (num1 * num2).toString();
-      } else if (currentOperation.value == "/") {
-        result = firstNumber.value = (num1 / num2).toString();
-      } else if (currentOperation.value == "sqr") {
-        result = firstNumber.value = Math.sqrt(num1).toString();
-      } else {
-        secondNumber.value == "";
-        currentOperation.value == "";
+      switch (currentOperation.value) {
+        case "+":
+          result = (num1 + num2).toString();
+          break;
+        case "-":
+          result = (num1 - num2).toString();
+          break;
+        case "*":
+          result = (num1 * num2).toString();
+          break;
+        case "/":
+          result = (num1 / num2).toString();
+          break;
+        case "sqr":
+          result = Math.sqrt(num1).toString();
+          break;
+        default:
+          return;
       }
       onDisplay.value = result;
       firstNumber.value = result;
