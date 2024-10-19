@@ -23,7 +23,7 @@
         <button @click="handleInputNumber(2)">2</button>
         <button @click="handleInputNumber(1)">1</button>
         <button @click="selectedOperation('-')">-</button>
-        <button @click="selectedOperation('sqr')">√</button>
+        <button @click="selectedOperation('%')">%</button>
       </div>
       <div class="row 4">
         <button @click="handleInputNumber(0)">0</button>
@@ -106,6 +106,9 @@ export default {
           break;
         case "^":
           result = (num1 ** num2).toString();
+          break;
+        case "%":
+          result = ((num1 / 100) * num2).toString();
           break;
         default:
           return;
