@@ -16,7 +16,7 @@
         <button @click="handleInputNumber(5)">5</button>
         <button @click="handleInputNumber(6)">6</button>
         <button @click="selectedOperation('*')">x</button>
-        <button @click="selectedOperation('sqr')">√</button>
+        <button @click="selectedOperation('^')">^</button>
       </div>
       <div class="row 3">
         <button @click="handleInputNumber(3)">3</button>
@@ -103,6 +103,9 @@ export default {
           break;
         case "sqr":
           result = Math.sqrt(num1).toString();
+          break;
+        case "^":
+          result = (num1 ** num2).toString();
           break;
         default:
           return;
