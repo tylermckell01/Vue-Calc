@@ -30,7 +30,7 @@
         <button @click="inputDecimal('.')">.</button>
         <button @click="performOperation()">=</button>
         <button @click="selectedOperation('+')">+</button>
-        <button @click="selectedOperation('sqr')">√</button>
+        <button @click="selectedOperation('π')">π</button>
       </div>
       <div class="row reset"><button @click="reset()">reset</button></div>
     </div>
@@ -108,7 +108,18 @@ export default {
           result = (num1 ** num2).toString();
           break;
         case "%":
-          result = ((num1 / 100) * num2).toString();
+          if (secondNumber.value !== "") {
+            result = ((num1 / 100) * num2).toString();
+          } else {
+            result = (num1 / 100).toString();
+          }
+          break;
+        case "π":
+          if (secondNumber.value !== "") {
+            result = (num1 * 3.14 * num2).toString();
+          } else {
+            result = (num1 * 3.14).toString();
+          }
           break;
         default:
           return;
